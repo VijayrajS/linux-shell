@@ -1,0 +1,81 @@
+CShell: An implementantion of the terminal using system calls in the C language.
+--------------------------------------------------------------------------------
+Vijayraj Shanmugaraj
+20171026
+
+USAGE
+- run "make"
+- execute by using "./csh"
+- type "quit" to exit the shell
+
+FEATURES
+
+ls command (file: ls.c)
+Usage:
+- ls takes arguments as flags (-l, -a) and directories in any order.
+- It lists the files of all the directories mentioned, in the form of option selected by the flags.
+- If there is no directory mentioned, it lists the files of current directory
+
+* "ls" - lists in alphabetical order
+* "ls -a" - display hidden files
+* "ls -l" - long list
+* "ls -al"/"ls -la"/"ls -l -a"/"ls -a -l" - long list including hidden files
+
+cd command (file: cd.c)
+* "cd (absolute path)" - goes to absolute path
+* "cd" - goes to ~/
+* "cd ~/(pathname)" - goes to ~/(pathname)
+* "cd .." - goes to previous directory
+* "cd ." - goes to same directory
+
+echo command (file: echo.c)
+* "echo" - prints empty line
+* "echo text" - prints "text"
+* "echo 'text' " - prints "text"
+* "echo $var" - prints value of linux environment variable "var"
+
+pwd command (file: pwd.c)
+* "pwd" - prints absolute path of present working directory
+
+pinfo command (file: pinfo.c)
+* "pinfo" : prints the process related info of the shell program
+* "pinfo <pid>" : prints the process info about given pid
+- pid --
+- Process status -- {R/S/S+/Z}
+- Memory
+- Executable path -- (Absolute path - includes ~/ if executable is present inside the shell directory)
+
+clock command: (file: clock.c)
+* prints utc time and date for given duration between given intervals
+* Usage: clock -t [interval] -n [duration]
+
+remindme command: (file: remindme.c)
+* reminds you with your custom message after the given number of seconds elapse
+* shell can take in commands during this time
+
+setenv command: (file: setenv.c)
+*If environment variable var does not exist, then the shell creates it.
+*The shell will set the value of var to value, or to the empty string if value is omitted.
+*Can set the value of existing environment variable too
+
+unsetenv command: (file: setenv.c)
+*Shell destroys the environment variable var
+
+jobs command: (file: exec_new.c)
+*Prints a list of all currently running jobs along with their pid, in particular, background jobs, in order of their creation along with their state
+
+kjob command: (file: exec_new.c)
+*Takes the job id of a running job and sends a signal value to that process
+
+fg command: (file: exec_new.c)
+*Brings a running or a stopped background job with given job number to foreground.
+
+bg command: (file: exec_new.c)
+*Changes a stopped background job to a running background job
+
+overkill command: (file: exec_new.c)
+*Kills all background process at once.
+
+{exec.c takes care of running foreground and background processes, and printing appropriate message to user when a background process ends}
+{Redirection, piping and a combination of both are supported. For redirection, use spaces between redirection arrows (<,>,>>)}
+{Signal handling has been taken care of. ^C, ^Z do not affect the shell, but only the foreground process(if any) running on the shell}
