@@ -281,24 +281,3 @@ void fg(char* argv1[], int argc1)
 
     return;
 }
-
-
-// Kripa
-void fg(char* argv1[], int argc1)
-{
-
-    qsort(pid_arr, 2048, sizeof(pid_det), proc_comp);
-    
-    int j = job_num - 1;
-    
-    int fg_pid = pid_arr[j].id;
-    curr_pid =  pid_arr[j].id;
-    
-    pid_arr[j].id = 0;
-    pid_arr[j].crtime = INT_MAX;
-    
-    kill(fg_pid, SIGCONT);
-    waitpid(fg_pid, &status, WUNTRACED);
-    
-    return;
-}
